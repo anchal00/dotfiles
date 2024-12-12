@@ -11,12 +11,12 @@ fi
 echo "Setting up the environment...... "
 
 # Update index and upgrade packages
-apt update && apt upgrade -y
-apt install build-essential -y
-echo "Updated package index and upgraded installed packages!"
+apt-get update && apt-get upgrade -y
 
-# Instal wget and cURL
-apt install wget -y && apt install curl -y
+# Install commonly used tools 
+apt-get install -y apt-utils curl lsb-release dpkg wget tcpdump net-tools openssl build-essential cmake software-properties-common gnupg 
+
+echo "Updated package index and upgraded installed packages!"
 
 # Install Apps and utilities
 ret = $(./install.sh)

@@ -1,6 +1,7 @@
 # Use a base image with Bash
 FROM ubuntu:20.04
-
+ENV TZ=Asia/Kolkata \
+    DEBIAN_FRONTEND=noninteractive
 # Install necessary dependencies (update this as needed)
 WORKDIR /app
 

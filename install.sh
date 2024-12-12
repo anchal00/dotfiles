@@ -8,11 +8,16 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
+# Add git repo to package manager
+add-apt-repository -y ppa:git-core/ppa
+apt-get update -y && apt-get install git -y
+
 declare -A install_list
 
 install_list["neovim"]="install_neovim" 
 install_list["docker"]="install_docker"
 install_list["tldr"]="install_tldr"
+install_list["stow"]="install_stow" 
 install_list["firefox"]="install_firefox"
 install_list["pyenv"]="install_pyenv"
 install_list["tmux"]="install_tmux"
@@ -21,12 +26,6 @@ install_list["kitty"]="install_kitty"
 # Create a directory to store APT repository keys if it doesn't exist
 install -m 0755 -d /etc/apt/keyrings
 
-install_git() {
-  # Add git repo to package manager
-  add-apt-repository ppa:git-core/ppa
-  apt update -y
-  apt install git -y
-}
 
 install_neovim() {
   echo "Installing Neovim..."
@@ -48,12 +47,18 @@ install_docker() {
   apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 }
 
+install_stow() {
+  echo "Installing GNU stow..."
+}
+
 install_tldr() {
   # Install Cargo first
+  echo "Installing Cargo..."
   curl https://sh.rustup.rs -sSf | sh -s -- -y
   echo "Installing Tldr..."
   export PATH="$HOME/.cargo/bin:$PATH"
   cargo install tealdeer
+  source "$HOME/.cargo/env"
 }
 
 install_firefox() {
@@ -67,7 +72,7 @@ install_firefox() {
   Pin: origin packages.mozilla.org
   Pin-Priority: 1000
   ' | tee /etc/apt/preferences.d/mozilla
-  apt update && apt install firefox -y
+  apt-get update && apt-get install firefox -y
 }
 
 install_pyenv() {
@@ -76,7 +81,7 @@ install_pyenv() {
   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
   echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
   echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-  exec "$SHELL"
+  source ~/.bashrc
 }
 
 install_golang() {
