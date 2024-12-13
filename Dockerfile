@@ -6,12 +6,10 @@ ENV TZ=Asia/Kolkata \
 WORKDIR /app
 
 # Copy your script into the container
-COPY ubuntu.sh /app/ubuntu.sh
-COPY install.sh /app/install.sh
+COPY ubuntu.sh install.sh /app/
 
 # Make the script executable
-RUN chmod +x /app/ubuntu.sh
-RUN chmod +x /app/install.sh
+RUN chmod +x /app/ubuntu.sh && chmod +x /app/install.sh
 
 # Default command to run the script
 ENTRYPOINT ["bash"]
