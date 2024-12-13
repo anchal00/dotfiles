@@ -41,8 +41,8 @@ install_docker() {
   # Add the repository to Apt sources:
   echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-    >> /etc/apt/sources.list.d/docker.list 
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable"\
+    | tee /etc/apt/sources.list.d/docker.list 
   apt-get update > /dev/null
   apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y > /dev/null
 }
@@ -64,15 +64,15 @@ install_tldr() {
 
 install_firefox() {
   echo "Installing Firefox..."
-  wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- > /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+  wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | tee /etc/apt/keyrings/packages.mozilla.org.asc 
   gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | \
   awk '/pub/{getline; gsub(/^ +| +$/,""); if($0 == "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3") print "\nThe key fingerprint matches ("$0").\n"; else print "\nVerification failed: the fingerprint ("$0") does not match the expected one.\n"}'
-  echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" >>  /etc/apt/sources.list.d/mozilla.list
+  echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | tee /etc/apt/sources.list.d/mozilla.list
   echo '
   Package: *
   Pin: origin packages.mozilla.org
   Pin-Priority: 1000
-  ' > tee /etc/apt/preferences.d/mozilla > /dev/null
+  ' | tee /etc/apt/preferences.d/mozilla 
   apt-get update > /dev/null && apt-get install firefox -y > /dev/null 
 }
 
@@ -95,8 +95,9 @@ install_tmux() {
 
 install_kitty() {
   echo "Installing kitty..."
-  curl -fsSL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin > /dev/null
-  echo "Visit 'https://sw.kovidgoyal.net/kitty/binary/#desktop-integration-on-linux' for details on desktop integration\n"
+  curl -fsSL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
+    launch=n
+  echo -e "Visit 'https://sw.kovidgoyal.net/kitty/binary/#desktop-integration-on-linux' for details on desktop integration\n"
 }
 
 for app in "${!install_list[@]}"; do
