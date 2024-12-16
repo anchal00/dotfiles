@@ -13,3 +13,4 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", opts) -- Move Right
 -- Window Management
 vim.keymap.set("n", "<leader>sv", vim.cmd.vsplit, opts)
 vim.keymap.set("n", "<leader>sh", vim.cmd.split, opts)
+

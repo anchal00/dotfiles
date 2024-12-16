@@ -23,8 +23,12 @@ require('pckr').add{
 		vim.cmd('colorscheme rose-pine-moon')
 	end
 };
-  -- My plugins here
-  -- 'foo1/bar1.nvim';
-  -- 'foo2/bar2.nvim';
+
+{
+	-- requires 'ripgrep' installed
+	'nvim-telescope/telescope.nvim',
+	tag = '0.1.8',
+	requires = { 'nvim-lua/plenary.nvim' }
+};
 }
 
