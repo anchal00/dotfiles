@@ -1,3 +1,2 @@
 require("personal.keymaps")
-
-print("Hello from personal dir")
+require("personal.pckr")
