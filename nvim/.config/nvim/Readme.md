@@ -1,12 +1,10 @@
 ### Neovim Configurations
 
-Requires: 
-    1. `ripgrep` for Telescope.nvim
-    2. `tree-sitter` cli
+#### Requires
+1. `ripgrep` for Telescope.nvim
+2. `tree-sitter` cli
 
-Plugins:
-    - Telescope
-    - Treesitter
+(Use `./deps.sh` to install pre-reqs)
 
-See also:
-    - Supported LSPs: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+#### To configure more LSPs
+See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
