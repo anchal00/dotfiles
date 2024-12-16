@@ -86,8 +86,8 @@ install_golang() {
   echo "Installing Golang..."
   GO_TAR='go1.23.4.linux-amd64.tar.gz'
   curl -sSfL -O https://go.dev/dl/$GO_TAR
-  tar -xzf go.tar.gz
-  rm go.tar.gz
+  tar -xzf $GO_TAR
+  rm $GO_TAR
 }
 
 install_tmux() {
