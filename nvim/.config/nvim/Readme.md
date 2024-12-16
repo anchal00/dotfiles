@@ -7,3 +7,6 @@ Requires:
 Plugins:
     - Telescope
     - Treesitter
+
+See also:
+    - Supported LSPs: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
