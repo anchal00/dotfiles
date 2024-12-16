@@ -18,6 +18,7 @@ install_list["neovim"]="install_neovim"
 install_list["docker"]="install_docker"
 install_list["tldr"]="install_tldr"
 install_list["stow"]="install_stow" 
+install_list["golang"]="install_golang" 
 install_list["firefox"]="install_firefox"
 install_list["pyenv"]="install_pyenv"
 install_list["tmux"]="install_tmux"
@@ -29,7 +30,7 @@ install -m 0755 -d /etc/apt/keyrings > /dev/null
 
 install_neovim() {
   echo "Installing Neovim..."
-  apt-get install neovim -y > /dev/null
+  apt-get install neovim -y
 }
 
 install_docker() {
@@ -44,12 +45,12 @@ install_docker() {
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable"\
     | tee /etc/apt/sources.list.d/docker.list 
   apt-get update > /dev/null
-  apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y > /dev/null
+  apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 }
 
 install_stow() {
   echo "Installing GNU stow..."
-  apt-get install stow -y > /dev/null
+  apt-get install stow -y
 }
 
 install_tldr() {
@@ -58,7 +59,7 @@ install_tldr() {
   curl https://sh.rustup.rs -sSf | sh -s -- -y > /dev/null
   echo "Installing Tldr..."
   export PATH="$HOME/.cargo/bin:$PATH"
-  cargo install tealdeer > /dev/null
+  $HOME/.cargo/bin/cargo install tealdeer
   source "$HOME/.cargo/env"
 }
 
@@ -73,24 +74,25 @@ install_firefox() {
   Pin: origin packages.mozilla.org
   Pin-Priority: 1000
   ' | tee /etc/apt/preferences.d/mozilla 
-  apt-get update > /dev/null && apt-get install firefox -y > /dev/null 
+  apt-get update > /dev/null && apt-get install firefox -y
 }
 
 install_pyenv() {
   echo "Installing Pyenv..."
-  curl -sSf https://pyenv.run | bash > /dev/null
-  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-  echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-  echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+  curl -sSf https://pyenv.run | bash
 }
 
 install_golang() {
   echo "Installing Golang..."
+  GO_TAR='go1.23.4.linux-amd64.tar.gz'
+  curl -sSfL -O https://go.dev/dl/$GO_TAR
+  tar -xzf go.tar.gz
+  rm go.tar.gz
 }
 
 install_tmux() {
   echo "Installing tmux..."
-  apt install tmux -y > /dev/null
+  apt install tmux -y
 }
 
 install_kitty() {

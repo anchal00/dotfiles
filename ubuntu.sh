@@ -10,16 +10,16 @@ fi
 
 echo "---------------------------"
 echo "Setting up the environment..."
-echo -e "---------------------------\n\n"
+echo -e "---------------------------\n"
 # Update index and upgrade packages
 echo -e "Updating apt index and upgrading packages..."
 apt-get update > /dev/null && apt-get upgrade -y > /dev/null
-echo -e "Success ! \n\n"
+echo -e "Success ! \n"
 
 # Install commonly used tools 
 echo "Installing tools..."
-apt-get install -y apt-utils curl lsb-release dpkg wget tcpdump net-tools openssl build-essential cmake software-properties-common gnupg > /dev/null
-echo -e "Success ! \n\n"
+apt-get install -y apt-utils curl lsb-release dpkg wget tcpdump net-tools openssl build-essential cmake software-properties-common gnupg
+echo -e "Success ! \n"
 
 # Install Apps and utilities
 echo "Installing Apps/Utilities..."

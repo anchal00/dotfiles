@@ -6,10 +6,10 @@ ENV TZ=Asia/Kolkata \
 WORKDIR /app
 
 # Copy your script into the container
-COPY ubuntu.sh install.sh /app/
+COPY ubuntu.sh install.sh loadconfigs.sh /app/
 
-# Make the script executable
-RUN chmod +x /app/ubuntu.sh && chmod +x /app/install.sh
+# Make the scripts executable
+RUN chmod +x /app/ubuntu.sh && chmod +x /app/install.sh && chmod +x /app/loadconfigs.sh
 
 # Default command to run the script
 ENTRYPOINT ["bash"]
