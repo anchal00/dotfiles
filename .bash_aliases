@@ -1,6 +1,6 @@
 alias tmx="tmux -u -f ~/.config/tmux/tmux.conf"
-alias fx="sudo $(history -p \!\!)"
-alias e="nvim ."
+alias fx="history -p \!\! | xargs -r sudo"
+alias e="nvim"
 
 alias start="sudo systemctl start"
 alias status="sudo systemctl status"
