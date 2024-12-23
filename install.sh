@@ -99,7 +99,7 @@ install_kitty() {
   curl -fsSL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
     launch=n
   ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/usr/bin/
-  update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 200
+  update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator ~/usr/bin/kitty 200
 
   # Set kitty as default terminal
   update-alternatives --config x-terminal-emulator
