@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-STOW_DIRS="tmux nvim kitty"
+STOW_DIRS="tmux nvim kitty bash"
 
 for x in $STOW_DIRS; do
     echo "Stowing $x"
