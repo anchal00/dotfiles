@@ -2,7 +2,7 @@ require('rose-pine').setup({
     disable_background = true
 })
 
-function paint(color) 
+function paint(color)
 	color = color or "rose-pine-moon"
 	vim.cmd.colorscheme(color)
 
