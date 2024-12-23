@@ -55,6 +55,18 @@ require('pckr').add{
         {'L3MON4D3/LuaSnip'},
         {'rafamadriz/friendly-snippets'},
     }
-}
+};
+{
+    'mikesmithgh/kitty-scrollback.nvim',
+    disable = false,
+    opt = true,
+    cmd = { 'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'KittyScrollbackGenerateCommandLineEditing' },
+    event = { 'User KittyScrollbackLaunch' },
+    -- tag = '*', -- latest stable version, may have breaking changes if major version changed
+    -- tag = 'v6.0.0', -- pin specific tag
+    config = function()
+      require('kitty-scrollback').setup()
+    end,
+  }
 }
 

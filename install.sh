@@ -104,6 +104,9 @@ install_kitty() {
   # Set kitty as default terminal
   sudo update-alternatives --config x-terminal-emulator
   echo -e "Visit 'https://sw.kovidgoyal.net/kitty/binary/#desktop-integration-on-linux' for details on desktop integration\n"
+  # Install kitty-scrollback.nvim
+  chmod +x kitty/.config/kitty/kitty-scrollback-setup.sh
+  ./kitty/.config/kitty/kitty-scrollback-setup.sh
 }
 
 for app in "${!install_list[@]}"; do
