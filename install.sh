@@ -3,15 +3,15 @@
 set -e
 
 declare -A install_list=(
-    "neovim"="install_neovim"
-    "docker"="install_docker"
-    "tldr"="install_tldr"
-    "stow"="install_stow"
-    "golang"="install_golang"
-    "firefox"="install_firefox"
-    "pyenv"="install_pyenv"
-    "tmux"="install_tmux"
-    "kitty"="install_kitty"
+    [neovim]="install_neovim"
+    [docker]="install_docker"
+    [tldr]="install_tldr"
+    [stow]="install_stow"
+    [golang]="install_golang"
+    [firefox]="install_firefox"
+    [pyenv]="install_pyenv"
+    [tmux]="install_tmux"
+    [kitty]="install_kitty"
 )
 
 # Check if the script is run as root
@@ -98,15 +98,15 @@ install_kitty() {
   echo "Installing kitty..."
   curl -fsSL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
     launch=n
-  sudo ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/usr/bin/
-  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 200
+  ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/usr/bin/
+  update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 200
 
   # Set kitty as default terminal
-  sudo update-alternatives --config x-terminal-emulator
+  update-alternatives --config x-terminal-emulator
   echo -e "Visit 'https://sw.kovidgoyal.net/kitty/binary/#desktop-integration-on-linux' for details on desktop integration\n"
   # Install kitty-scrollback.nvim
-  chmod +x kitty/.config/kitty/kitty-scrollback-setup.sh
-  ./kitty/.config/kitty/kitty-scrollback-setup.sh
+  chmod +x kitty-scrollback-setup.sh
+  ./kitty-scrollback-setup.sh
 }
 
 for app in "${!install_list[@]}"; do
