@@ -30,6 +30,7 @@ alias mouse='xinput set-prop 12 "Device Enabled" 1'
 export TERM=xterm-256color
 # Go path
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 # Cargo (Rust)
 export PATH="$HOME/.cargo/bin:$PATH"
 # pyenv
