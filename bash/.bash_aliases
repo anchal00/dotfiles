@@ -36,4 +36,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH=$PYENV_ROOT/bin:$PATH
+
+# Function to get current Git branch
+parse_git_branch() {
+  git branch 2>/dev/null | grep \* | sed 's/* //'
+}
+
+# Set the PS1 prompt
+PS1='\[\e[0;32m\]\u\[\e[0m\]:\[\e[0;34m\]\w\[\e[0;33m\] $(parse_git_branch)\[\e[0m\]\$ '
+
 eval "$(pyenv init -)"
